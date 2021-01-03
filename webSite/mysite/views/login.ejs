@@ -1,12 +1,13 @@
 <html>
 <body>
-   <h1> Login Page </h1>
-   <form action ="/getLoginData" method="POST">
+   <h1> Movies - Subscriptions Web Site </h1>
+   <h2> Login Page </h2>
+   <form action ="/menu" method="POST">
     User Name : <input name="userName" type="text"><br/>
     Password : <input name="password" type="password"><br/>
     <input type="submit" value="Log in">
     <h4 style="color: brown"><%= err %></h4>
-    <h4>New User? : </h4> <a href="http://localhost:3000/createAccount">Create Account</a>
+   New User? : <a href="http://localhost:3000/createAccount">Create Account</a>
    </form>
 </body>
 </html>

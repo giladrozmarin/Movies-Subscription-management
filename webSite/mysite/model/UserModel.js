@@ -4,11 +4,10 @@ let Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
    
-   Name: String,
-   Email: String,
-   City:  String
-   
+   UserName: String,
+   Password: String
+    
 });
 
 
-module.exports = mongoose.model('members', MembersSchema )
+module.exports = mongoose.model('users', UserSchema )
