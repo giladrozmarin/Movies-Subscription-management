@@ -1,11 +1,12 @@
 {
     "users": [
         {
-            "Id" : "5ff18a14aa6e705be888356d",
-            "FirstName": "Admin",
-            "LastName": "Admin",
-            "CreatedDate": "2021-01-03",
-            "SessionTimeOut": 100
+            "id" : "5ff18a14aa6e705be888356d",
+            "firstName": "Admin",
+            "lastName": "Admin",
+            "userName": "Admin",
+            "createdDate": "2021-01-03",
+            "sessionTimeOut": 100
         }
     ]
 }

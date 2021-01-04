@@ -1,0 +1,36 @@
+<html>
+<body>
+
+    
+    <h1> Movies - Subscriptions Web Site </h1>
+    <a href="http://localhost:3000/menu/movies"><button>Movies</button></a>
+    <a href="http://localhost:3000/menu/subscriptions"><button>Subscriptions</button></a>   
+        <% if (user) { %>
+        <a href="http://localhost:3000/menu/manageUsers"><button>Users Management</button></a>
+        <% } %>
+     <a href="http://localhost:3000/"><button>Log Out</button></a>
+    </br>
+
+<h1>Users</h1>
+
+<a href="http://localhost:3000/menu/manageUsers"><button>All Users </button></a>
+<a href="http://localhost:3000/menu/manageUsers"><button>Add Users </button></a>
+
+<dl>
+    <% data.map( v =>{ %>
+       
+        <dt><b>Name:</b> <%= v.firstName %> <%= v.lastName %></dt>
+        <dt><b>User Name:</b> <%= v.userName %></dt>
+        <dt><b>Session time out(Minutes):</b> <%= v.SessionTimeOut %></dt>
+        <dt><b>Created date:</b> <%= v.createdDate %></dt>
+        <dt><b>Permissions:</b> [<%= v.permissions %>]</dt>
+
+          <% var obj = JSON.stringify(v) %>
+        <dd><a href="http://localhost:3000/manage/edit/<%=obj %>"><button>Edit</button></a>
+            <a href="http://localhost:3000/manage/delete/<%= v.id %>"><button>Delete</button></a></dd>
+      <% }) %>
+</dl>
+
+
+</body>
+</html>

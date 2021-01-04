@@ -1,13 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const authentication = require('../BL/authentication')
+const manageUsers = require('../BL/manageUsers')
 
-/* 1. login Page 
-router.get('/', function (req, res, next) {
-  var passedVariable = req.query.valid;
-  res.render('loginPage', { err: passedVariable });
-});
- */
 router.post('/', async (req, res, next) =>
 {
 
@@ -28,5 +23,14 @@ let isAuthenticated = await authentication.authenticationUser(req.body.userName,
   res.render('login', { err: "The user name or password not correct" })
   }
 });
+router.get('/manageUsers', async (req, res, next) =>
+{
+  //check the user details in user.json 
+  let users = await manageUsers.getUsers()
+  let permissions = await manageUsers.getPermissions()
+  let data = users.map((item, i) => Object.assign({}, item, permissions[i]));
+   res.render('manageUsers', { user: true , data: data })
+})
+
 
 module.exports = router;

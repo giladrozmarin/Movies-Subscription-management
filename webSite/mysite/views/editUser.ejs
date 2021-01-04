@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <h1>Users</h1>
+        <h2>Edit User: <%=data.firstName%> <%=data.lastName%></h2>
+        <form action ="/menu/manageUsers" method="GET">
+            First Name: <input name="firstName" type="text" value="<%= data.firstName %>" >   </br>
+            Last Name: <input name="lastName" type="text" value="<%= data.lastName %>" >   </br>
+            User Name: <input name="userName" type="text" value="<%= data.userName %>" >   </br>
+            Session Time Out(Minutes): <input name="userName" type="text" value="<%= data.sessionTimeOut %>" >   </br>
+            Created date:  <input name="userName" type="text" value="<%= data.createdDate %>" readonly >   </br>
+            Permissions: </br> 
+                <% arr.map(x =>{ let check= data.permissions.filter( y => y===x)  %>
+                    <% if(check.length !== 0){%>
+                    <input type="checkbox" name="<%= x %>" value="<%= x %>" checked >
+                    <label for="<%= x %>"> <%= x %></label></br>
+                    <% }else{ %>
+                        <input type="checkbox" name="<%= x %>" value="<%= x %>"  >
+                        <label for="<%= x %>"> <%= x %></label></br>
+             <% }})%>
+        </form>   
+        
+    </body>
+</html> 
