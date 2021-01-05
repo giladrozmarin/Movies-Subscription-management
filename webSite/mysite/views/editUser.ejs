@@ -1,23 +1,58 @@
 <html>
+
     <body>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <h1>Users</h1>
+        <% if ( data === 0){ %>
+            <form action ="/manage/create" method="POST">
+                First Name: <input name="firstName" type="text" >   </br>
+                Last Name: <input name="lastName" type="text">   </br>
+                User Name: <input name="userName" type="text"  >   </br>
+                Session Time Out(Minutes): <input name="sessionTimeOut" type="text" >   </br>
+                Created date:  <input type="hidden"  name="CreatedDate" value="5/1/20" readonly >   </br>
+                Permissions: </br> 
+                <% arr.map(x => {%>
+                <input type="checkbox" name="<%=x.replace(/\s+/g,'') %>"  value="<%= x %>"  >
+                <label for="<%= x %>"> <%= x %></label></br>
+
+                <% })} else {%>
+
         <h2>Edit User: <%=data.firstName%> <%=data.lastName%></h2>
-        <form action ="/menu/manageUsers" method="GET">
+        <form action ="/manage/create" method="POST">
+            <input type="hidden"  name="id" value="<%= data.id %>">
+
             First Name: <input name="firstName" type="text" value="<%= data.firstName %>" >   </br>
             Last Name: <input name="lastName" type="text" value="<%= data.lastName %>" >   </br>
             User Name: <input name="userName" type="text" value="<%= data.userName %>" >   </br>
-            Session Time Out(Minutes): <input name="userName" type="text" value="<%= data.sessionTimeOut %>" >   </br>
-            Created date:  <input name="userName" type="text" value="<%= data.createdDate %>" readonly >   </br>
+            Session Time Out(Minutes): <input name="sessionTimeOut" type="text" value="<%= data.sessionTimeOut %>" >   </br>
+            Created date:  <input type="text" name="CreatedDate" value="<%= data.createdDate %>" readonly >   </br>
             Permissions: </br> 
                 <% arr.map(x =>{ let check= data.permissions.filter( y => y===x)  %>
                     <% if(check.length !== 0){%>
-                    <input type="checkbox" name="<%= x %>" value="<%= x %>" checked >
+                    <input type="checkbox" name="<%=x.replace(/\s+/g,'') %>" value="<%= x %>" checked >
                     <label for="<%= x %>"> <%= x %></label></br>
                     <% }else{ %>
-                        <input type="checkbox" name="<%= x %>" value="<%= x %>"  >
+                        <input type="checkbox" name="<%=x.replace(/\s+/g,'') %>"  value="<%= x %>"  >
                         <label for="<%= x %>"> <%= x %></label></br>
-             <% }})%>
-        </form>   
-        
+             <% }})}%>
+            </br> 
+
+             <button type="submit" name=update value="update">Update</button>
+             <button type="submit" name=cancel value="cancel">Cancel</button>
+        </form>  
+        <script>
+        var $others = $('input[name="ViewSubscriptions"]')
+        $('input[name*="Subscriptions"]' ) .change(function() {
+        if (this.checked) {
+        $others.prop('checked', true)
+        }
+        });
+        var $others1 = $('input[name="ViewMovies"]')
+        $('input[name*="Movies"]' ) .change(function() {
+        if (this.checked) {
+        $others1.prop('checked', true)
+        }
+         });
+       </script>
     </body>
 </html> 

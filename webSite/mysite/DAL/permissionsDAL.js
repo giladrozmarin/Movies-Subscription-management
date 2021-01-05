@@ -9,5 +9,5 @@ exports.getAllPermissions = () =>
 }
 
 exports.setPermissions = (data) =>{
-    js.writeFile(`${__dirname}/../DataSource/Permissions.json`,{data},err => err? err : console.log("success"))
+    js.writeFile(`${__dirname}/../Data Sources/Permissions.json`,data,err => err? err : console.log("success"))
 }

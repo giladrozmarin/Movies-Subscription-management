@@ -28,7 +28,9 @@ router.get('/manageUsers', async (req, res, next) =>
   //check the user details in user.json 
   let users = await manageUsers.getUsers()
   let permissions = await manageUsers.getPermissions()
+
   let data = users.map((item, i) => Object.assign({}, item, permissions[i]));
+  console.log(data)
    res.render('manageUsers', { user: true , data: data })
 })
 

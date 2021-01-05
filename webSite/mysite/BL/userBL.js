@@ -74,3 +74,20 @@ exports.creatUser =  (id,userName, password) =>
 	 
 	})
 }
+
+exports.userConfig = (username) => {
+
+   return new Promise((res,rej) => {
+       const u = new User({
+        UserName: username,
+        Password: ""
+       })
+       u.save ((err,data)=> {
+           if(err){
+               rej(err)
+           } else{
+              res('update') 
+           }
+       })
+   })
+}

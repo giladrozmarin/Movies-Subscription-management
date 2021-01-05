@@ -1,4 +1,4 @@
-const js  = require ('jsonfile')
+const js = require("jsonfile")
 
 
 exports.getAllUsers = () => 
@@ -9,5 +9,7 @@ exports.getAllUsers = () =>
 }
 
 exports.setUsers = (data) =>{
-    js.writeFile(`${__dirname}/../DataSource/Users.json`,{"users":data},err => err? err : console.log("success"))
+   console.log(data)
+  
+    js.writeFile(`${__dirname}/../Data Sources/Users.json`,{"users":data},err => err? err : console.log("success"))
 }
