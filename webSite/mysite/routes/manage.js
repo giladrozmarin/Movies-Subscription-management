@@ -8,28 +8,12 @@ router.get('/', function(req, res) {
   res.send('respond with a resource');
 });
 
-//Edit
-router.get('/edit/:id', function(req, res, next) {
-  //get all data from prev page
-  let data = JSON.parse(req.params.id)
  
-   let arr = 
-   [
-    'View Subscriptions',
-    'Create Subscriptions',
-    'Delete Subscriptions',
-    'Update Subscriptions',
-    'View Movies',
-    'Create Movies',
-    'Delete Movies',
-    'Update Movies'
-  ]
-   res.render('editUser',{data,arr} );
-});
 
 //Edit
-router.get('/edit/:id', function(req, res) {
+router.get('/edit', function(req, res) {
   
+  console.log(req.query.obj)
   let arr = 
   [
    'View Subscriptions',
@@ -42,14 +26,14 @@ router.get('/edit/:id', function(req, res) {
    'Update Movies'
  ]
   //add
-  if(req.params.id === 0 )
+  if(req.query.obj === 0 )
   { 
     let data=0
     res.render('editUser',{data,arr} );
   }
   else{
   //get all data from prev page
-  let data = JSON.parse(req.params.id);
+  let data = JSON.parse(req.query.obj);
    res.render('editUser',{data,arr} );
   }
 });

@@ -39,7 +39,11 @@ exports.deleteUser= async (id) => {
 
  let data = await exports.getUsers()
  let newData =  data.filter( x => x.id != id )
- usersDAL.setUsers(newData)
+ await usersDAL.setUsers(newData)
+
+ data = await exports.getPermissions()
+ newData =  data.filter( x => x.id != id )
+ PermissionsDAL.setPermissions(newData)
 
 
 }

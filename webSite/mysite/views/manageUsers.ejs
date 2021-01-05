@@ -14,7 +14,7 @@
 <h1>Users</h1>
 
 <a href="http://localhost:3000/menu/manageUsers"><button>All Users </button></a>
-<a href="http://localhost:3000/manage/edit/0"><button>Add Users </button></a>
+<a href="http://localhost:3000/manage/edit/?obj=0"><button>Add Users </button></a>
 
 <dl>
     <% data.map( v =>{ %>
@@ -26,7 +26,7 @@
         <dt><b>Permissions:</b> [<%= v.permissions %>]</dt>
 
         <% var obj = JSON.stringify(v) %>
-        <dd><a href="http://localhost:3000/manage/edit/{<%= obj %>}"><button>Edit</button></a>
+        <dd><a href="http://localhost:3000/manage/edit/?obj=<%= obj%>"><button>Edit</button></a>
             <a href="http://localhost:3000/manage/delete/<%= v.id %>"><button>Delete</button></a></dd>
       <% }) %>
 </dl>
