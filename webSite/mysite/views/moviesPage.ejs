@@ -1,0 +1,37 @@
+<html>
+    <body>
+        <h1> Movies - Subscriptions Web Site </h1>
+        <a href="http://localhost:3000/movies"><button>Movies</button></a>
+        <a href="http://localhost:3000/subscriptions"><button>Subscriptions</button></a>   
+            <% if (user) { %>
+            <a href="http://localhost:3000/menu/manageUsers"><button>Users Management</button></a>
+            <% } %>
+         <a href="http://localhost:3000/"><button>Log Out</button></a>
+        </br>
+
+        <h1>Movies</h1>
+        <a href="http://localhost:3000/movies/"><button>All Movies </button></a>
+        <a href="http://localhost:3000/movies/edit/?obj=0"><button>Add Movies </button></a>
+
+        <form action ="/movies/find" method="POST">
+        Find Movie:<input type="text" name="find"><button>Find</button>
+         </form> 
+
+
+        <dl>
+        <% data.map( v =>{ %>
+            <%var str = v.Premiered%>
+            <%var n = str.split("-")%>
+            <%var t = n[0]%>
+            <dt><b> <%= v.Name %>, <%= t %> </b></dt>
+            <dt>generes: <%= v.Genres %> </dt>
+            <dt><img src= <%= v.Image %>>  </dt>
+            <% var obj = JSON.stringify(v) %>
+            <dd><a href="http://localhost:3000/movies/edit/?obj=<%= obj%>"><button>Edit</button></a>
+                <a href="http://localhost:3000/movies/delete/<%= v._id %>""><button>Delete</button></a></dd>
+            </br>
+            <% }) %>
+        </dl>
+
+    </body>
+</html>

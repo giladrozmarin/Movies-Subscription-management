@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const indexRoutes = require('./routes/index')
+const indexRoutes = require('./routes/index');
+const moviesRoutes = require('./routes/movies')
 //DB
 require('./configs/database');
 //init db 
@@ -13,5 +14,8 @@ require('./configs/database');
 app.use(bodyParser.urlencoded({ extended: true }))  
    .use(bodyParser.json());
 
-app.use('/', indexRoutes);
+   //just for first time
+//app.use('/', indexRoutes);
+app.use('/movies', moviesRoutes);
+
 app.listen(3001);

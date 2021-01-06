@@ -1,0 +1,31 @@
+<html>
+
+    <body>
+         <h1>Movies</h1>
+        <% if ( data === 0){ %>
+            <form action ="/movies/create" method="POST">
+                Name: <input name="Name" type="text" >   </br>
+                Genres: <input name="Genres" type="text">   </br>
+                image url: <input name="Image" type="text"  >   </br>
+                Premiered: <input name="Premiered" type="text" >   </br>
+          
+                <% } else {%>
+
+      
+        <form action ="/movies/create" method="POST">
+            <input type="hidden"  name="id" value="<%= data._id %>">
+
+            Name: <input name="Name" type="text" value="<%= data.Name %>" >   </br>
+            Genres: <input name="Genres" type="text" value="<%= data.Genres %>" >   </br>
+            image url: <input name="Image" type="text" value="<%= data.Image %>" >   </br>
+            Premiered: <input name="Premiered" type="text" value="<%= data.Premiered %>" >   </br>
+           
+                
+             <% }%>
+            </br> 
+
+             <button type="submit" name=save value="save">Save</button>
+             <button type="submit" name=cancel value="cancel">Cancel</button>
+        </form>  
+    </body>
+</html> 
