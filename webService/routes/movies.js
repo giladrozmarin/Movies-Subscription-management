@@ -15,6 +15,19 @@ router.route('/').
             return resp.json(movies)
         })       
     });
+
+router.route('/:id').
+    get(function(req,resp)
+    {
+        Movies.findById(req.params.id, function(err,movies)
+        {
+            if(err)
+            {
+                return resp.send(err)
+            }
+            return resp.json(movies)
+        })       
+    });
 router.route('/:id').
     delete(function(req,resp)
     {
@@ -55,10 +68,8 @@ router.route('/').
             })       
           
         });
- 
-
-        router.route('/:id').
-        put(function(req,resp)
+router.route('/:id').
+    put(function(req,resp)
         {
             Movies.findByIdAndUpdate(req.params.id,
             {

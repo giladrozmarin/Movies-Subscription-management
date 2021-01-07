@@ -5,8 +5,13 @@ let Schema = mongoose.Schema;
 let SubscriptionsSchema = new Schema({
    
    MemberId: Schema.Types.ObjectId,
-   Movies: [{ movieId :  Schema.Types.ObjectId, data:  Date }]
+   Movies: [{ movieId :  Schema.Types.ObjectId, date:  Date }]
+   
 });
 
 
-module.exports = mongoose.model('Subscriptions', SubscriptionsSchema )
+module.exports = mongoose.model('subscriptions', SubscriptionsSchema )
+
+
+
+

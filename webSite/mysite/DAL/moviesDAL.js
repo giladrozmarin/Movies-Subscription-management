@@ -8,6 +8,13 @@ exports.getMovies = ()=> {
 
 }
 
+exports.getMoviesById = (id)=> {
+
+
+  return axios.get(`http://localhost:3001/movies/${id}`)
+
+}
+
 
 exports.deleteMoviesById = (id) => {
      axios.delete(`http://localhost:3001/movies/${id}`)

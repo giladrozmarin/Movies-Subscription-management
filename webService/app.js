@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const indexRoutes = require('./routes/index');
-const moviesRoutes = require('./routes/movies')
+const moviesRoutes = require('./routes/movies');
+const subscriptionsRoutes = require('./routes/subscriptions');
+const membersRoutes = require('./routes/members');
 //DB
 require('./configs/database');
 //init db 
@@ -17,5 +19,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
    //just for first time
 //app.use('/', indexRoutes);
 app.use('/movies', moviesRoutes);
-
+app.use('/subscriptions', subscriptionsRoutes);
+app.use('/members', membersRoutes);
 app.listen(3001);
