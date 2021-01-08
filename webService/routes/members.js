@@ -1,10 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const Subscriptions  = require('../model/SubscriptionsModel')
 const Members = require('../model/MembersModel')
-
+//full rest API
+//GET
 router.route('/').
-    get(function(req,resp)
+ get(function(req,resp)
+ 
     {
         Members.find({},  (err,member) =>
         {
@@ -15,8 +16,9 @@ router.route('/').
             return resp.json(member)
         })       
     });
-    router.route('/:id').
-        get(function(req,resp)
+router.route('/:id').
+//GET (by id)
+get(function(req,resp)
         {
             Members.findById(req.params.id, function(err,member)
           {
@@ -27,4 +29,69 @@ router.route('/').
                 return resp.json(member)
           });
         });
+//POST (create)
+router.route('/'). 
+post(function(req,resp)
+            {
+         
+                const m = new Members({
+                    Name : req.body.Name,
+                    Email : req.body.Email,
+                    City : req.body.City
+                 
+                });
+    
+                m.save(function(err) {
+                    if(err)
+                    {
+                        return resp.send(err);
+                    }
+                    else
+                    {  
+                        return resp.send('Created !') 
+                    }
+                })       
+              
+            });  
+//PUT (update)
+router.route('/:id').
+ put(function(req,resp)
+        {
+            Members.findByIdAndUpdate(req.params.id,
+            {
+                Name : req.body.Name,
+                Email : req.body.Email,
+                City : req.body.City
+            }, function(err)
+            {
+                if(err)
+                {
+                    return resp.send(err);
+                }
+                else
+                {
+                    return resp.send("Object Updated !!");
+                }
+
+            }) 
+          
+        });
+//DELETE  
+router.route('/:id').
+ delete(function(req,resp)
+    {
+   
+        Members.findByIdAndDelete(req.params.id,function(err)
+       {
+           if(err)
+           {
+               return resp.send(err)
+           }
+           else
+           {
+               return resp.send("Object Deleted !")
+           }
+       }) 
+    
+    });
 module.exports = router; 

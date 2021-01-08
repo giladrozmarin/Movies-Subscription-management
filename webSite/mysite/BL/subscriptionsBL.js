@@ -7,6 +7,7 @@ exports.getMembers = async ()=>
 {
   //get subscriptions 
   let subscriptions = await subscriptionsDAL.getSubscriptions();
+  console.log(subscriptions.data)
   let members =await Promise.all (subscriptions.data.map(async x => {
   
   let data_member = await membersDAL.getMembersById(x.MemberId)
