@@ -13,20 +13,38 @@ exports.getMembers = async ()=>
     //member details 
   let date_movie  = await Promise.all (x.Movies.map(async x =>{
                     let data = await moviesDAL.getMoviesById(x.movieId)
-                    return  {Name : data.data.Name , date: x.date}}))
+                    return  {Name : data.data.Name,id:x.movieId, date: x.date}}))
     //movie details                
-      return Object.assign(data_member.data,{movies:date_movie})
+      return Object.assign(data_member.data,{movies:date_movie},{_ids:subscriptions.data[0]._id})
     }))
- 
+  
     return members;                
   }           
   
   
+exports.getMovies = async (movies) => {
+     //movies no filter
+    let data = await moviesDAL.getMovies()
+    //movies Name:x.Name,id:x._id
+    let movies_s = data.data.map(x => {return{ Name:x.Name,id:x._id}})
+    //movies id:x._id
+    let data1 = movies.map(x => x.id)
+    //movies Name:x.Name,id:x._id filter by id 
+    let difference =  movies_s.filter(x => 
+      !data1.includes(x.id))
+     
+  
+    return Array.from(difference)
+   
+  //step 1 : get data
+ 
+  
+  }
+  
+exports.addMovie = async (data,id) => {
+
+    subscriptionsDAL.updateSubscriptions(data,id)
+  }
 
  
-  /* _id
-     Member id 
-     Movies{ id , date}
-  */
- //for every member id find the id and get the name,city,email
- //for every member id find all*  the movie name and date
+ 

@@ -8,3 +8,12 @@ exports.getSubscriptions = ()=> {
 
 }
 
+
+exports.updateSubscriptions = (data,id)=> {
+   
+ 
+
+    return axios.put(`http://localhost:3001/subscriptions/${id.id}`,
+    {movieId: data.movie, date: data.date }
+    )
+}

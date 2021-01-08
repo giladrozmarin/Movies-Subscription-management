@@ -4,7 +4,7 @@
     <style>
 div {
 
-  width: 300px;
+  width: 400px;
   border: 5px solid black;
   padding: 20px;
   margin: 20px;
@@ -34,7 +34,20 @@ div {
             <dd><a href="http://localhost:3000/subscriptions/edit/?obj=<%= obj%>"><button>Edit</button></a>
                 <a href="http://localhost:3000/subscriptions/delete/<%= v._id %>""><button>Delete</button></a></dd>
                 <h4>  Movies Watched </h4>
-                <a href="http://localhost:3000/subscriptions/newMovie/?obj=<%= obj%>"><button>Subscribe to new movie</button></a></dd>
+                <a href="http://localhost:3000/subscriptions/?obj=<%= obj%>"><button>Subscribe to new movie</button></a></dd>
+              </br>Add a new movie<br>
+              <form action ="/subscriptions/addMovie/?obj=<%= obj%>" method="POST">
+                
+               
+                <select  name="movie" required>
+                    <%movies_list.map(v =>{%>
+                        <option value="<%=v.id%>"><%=v.Name%></option>
+                    <%})%>
+                </select>
+
+                <input type="date" name="date">
+               <button>Subscribe</button>
+            </form>
                 <ul>
                    <% v.movies.map( x => { %>
                     <%var fullDate = x.date%>

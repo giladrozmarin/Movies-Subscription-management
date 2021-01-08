@@ -21,7 +21,7 @@ router.get('/edit', function(req, res) {
   res.render('editMovies',{data} );
   }
 });
-//Find
+//Find-post
 router.post('/find', async (req, res) => {
    //step 1 : get data
    let data_m = await moviesBL.getMovies()
@@ -31,6 +31,16 @@ router.post('/find', async (req, res) => {
 
     res.render('moviesPage',{data,user:true})
   });
+//Find-get
+router.get('/find/:id', async (req, res) => {
+  //step 1 : get data
+  let data_m = await moviesBL.getMovies()
+  
+  //step 2 : get relevant movies 
+  let data=  data_m.filter( x => x.Name.includes(req.params.id)) 
+
+   res.render('moviesPage',{data,user:true})
+ });
 //Delete
   router.get('/delete/:id' , async (req,res) =>{
 
