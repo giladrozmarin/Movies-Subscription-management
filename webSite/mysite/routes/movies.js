@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const moviesBL = require('../BL/moviesBL')
-
+//Movies list
 router.get('/', async (req, res, next) => {
 
     let data = await moviesBL.getMovies()
+     
     res.render('moviesPage',{data,user:true})
   });
 //Edit
