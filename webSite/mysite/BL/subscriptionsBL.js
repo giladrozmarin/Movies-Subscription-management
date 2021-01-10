@@ -7,7 +7,7 @@ exports.getMembers = async ()=>
 {
   //get subscriptions 
   let subscriptions = await subscriptionsDAL.getSubscriptions();
-  console.log(subscriptions.data)
+
   let members =await Promise.all (subscriptions.data.map(async x => {
   
   let data_member = await membersDAL.getMembersById(x.MemberId)
@@ -15,9 +15,11 @@ exports.getMembers = async ()=>
   let date_movie  = await Promise.all (x.Movies.map(async x =>{
                     let data = await moviesDAL.getMoviesById(x.movieId)
                     return  {Name : data.data.Name,id:x.movieId, date: x.date}}))
+                   
     //movie details                
-      return Object.assign(data_member.data,{movies:date_movie},{_ids:subscriptions.data[0]._id})
+      return Object.assign(data_member.data,{movies:date_movie},{_ids:x._id})
     }))
+
   
     return members;                
   }           
@@ -47,5 +49,9 @@ exports.addMovie = async (data,id) => {
     subscriptionsDAL.updateSubscriptions(data,id)
   }
 
+
+
  
- 
+ exports.delete =  (id) => {
+  subscriptionsDAL.deleteSubscriptionsById(id)
+}

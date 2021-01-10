@@ -39,5 +39,22 @@ put(function(req,resp)
             }) 
           
         });
-
+//DELETE  
+router.route('/:id').
+ delete(function(req,resp)
+    {
+   
+        Subscriptions.findByIdAndDelete(req.params.id,function(err)
+       {
+           if(err)
+           {
+               return resp.send(err)
+           }
+           else
+           {
+               return resp.send("Object Deleted !")
+           }
+       }) 
+    
+    });
 module.exports = router; 

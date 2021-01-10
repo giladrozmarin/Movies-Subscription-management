@@ -16,8 +16,9 @@ require('./configs/database');
 app.use(bodyParser.urlencoded({ extended: true }))  
    .use(bodyParser.json());
 
-   //just for first time
+//just for first time
 app.use('/', indexRoutes);
+
 app.use('/movies', moviesRoutes);
 app.use('/subscriptions', subscriptionsRoutes);
 app.use('/members', membersRoutes);

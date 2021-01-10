@@ -32,7 +32,7 @@ div {
                 <b>City:</b> <%=v.City%></br>
                 <% var obj = JSON.stringify(v) %>
             <dd><a href="http://localhost:3000/subscriptions/edit/?obj=<%= obj%>"><button>Edit</button></a>
-                <a href="http://localhost:3000/subscriptions/delete/<%= v._id %>""><button>Delete</button></a></dd>
+                <a href="http://localhost:3000/subscriptions/delete/<%=v._id%>/<%=v._ids%>"><button>Delete</button></a></dd>
                 <h4>  Movies Watched </h4>
                 <a href="http://localhost:3000/subscriptions/newMovie/?obj=<%= obj%>"><button>Subscribe to new movie</button></a></dd>
                 <ul>

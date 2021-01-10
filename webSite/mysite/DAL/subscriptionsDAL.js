@@ -18,3 +18,7 @@ exports.updateSubscriptions = (data,id)=> {
     {movieId: data.movie, date: data.date }
     )
 }
+
+exports.deleteSubscriptionsById = (id) => {
+    axios.delete(`http://localhost:3001/subscriptions/${id}`)
+}

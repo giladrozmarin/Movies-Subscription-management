@@ -13,18 +13,21 @@ router.get('/', async (req, res, next) => {
   router.get('/newMovie', async (req, res, next) => {
    
     let data1 = JSON.parse(req.query.obj);
-    debugger;
     let movies = data1.movies.map(x=>{return{ Name:x.Name,id:x.id}} )
     let movies_list = await subscriptionsBL.getMovies(movies)
- 
+   //data1._id : "5ff97c1f84179463f5fe94a1"
+   //data1._ids :"5ff97ff248bec968ce2a682b"
     let data = await subscriptionsBL.getMembers()
 
-    res.render('subscriptionsNewMovie',{data,user:true,movies_list})
+    res.render('subscriptionsNewMovie',{data,user:true,movies_list,idUser :data1._id})
   });
   router.post('/addMovie', async (req, res, next) => {
+
     //data1
     //{ movie: '5ff97c49eeb2ff64b8408090', date: '2021-01-12' }
     let data1 =  JSON.parse(JSON.stringify(req.body))
+    debugger;
+
     //new_movie
     //{ name: '', id: '5ff97c49eeb2ff64b8408090' }
     let new_movie ={name:"" ,id: data1.movie}
@@ -117,10 +120,12 @@ router.post('/create', async (req, res) =>
    }}
 })
 //Delete
-router.get('/delete/:id' , async (req,res) =>{
+router.get('/delete/:id/:ids' , async (req,res) =>{
 
-  
+  console.log(req.params.id)
+  console.log(req.params.ids)
   await memberBL.delete(req.params.id)
+  await subscriptionsBL.delete(req.params.id)
   res.redirect('/subscriptions')
 } ) 
   module.exports = router;
