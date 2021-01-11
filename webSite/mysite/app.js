@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -12,6 +13,17 @@ var moviesRoutes = require('./routes/movies');
 var subscriptionsRoutes = require('./routes/subscriptions');
 
 var app = express();
+//session
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
+  rolling: true
+
+}))
+ 
+
 //DB
 require('./configs/database');
 // view engine setup

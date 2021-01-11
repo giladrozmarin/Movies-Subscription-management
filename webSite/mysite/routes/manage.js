@@ -2,15 +2,14 @@ var express = require('express');
 const manageUsers = require('../BL/manageUsers');
 const userBL = require('../BL/userBL')
 var router = express.Router();
-
-/* GET users listing. */
-router.get('/', function(req, res) {
-  res.send('respond with a resource');
-});
-
+ 
 //Edit
 router.get('/edit', function(req, res) {
-  
+  if(!req.session.auth){
+     
+    res.redirect('/')
+   }
+   
   console.log(req.query.obj)
   let arr = 
   [
@@ -38,7 +37,11 @@ router.get('/edit', function(req, res) {
 
 //delete
 router.get('/delete/:id', (req, res) => {
-   console.log(req.params.id)
+  if(!req.session.auth){
+     
+    res.redirect('/')
+   }
+   
    manageUsers.deleteUser(req.params.id)
     
    res.redirect('/menu/manageUsers');
@@ -47,6 +50,10 @@ router.get('/delete/:id', (req, res) => {
 //create
 router.post('/create', async (req, res) =>
 {
+  if(!req.session.auth){
+     
+    res.redirect('/')
+   }
   if(req.body.cancel != undefined)
   {
     res.redirect('/menu/manageUsers')
