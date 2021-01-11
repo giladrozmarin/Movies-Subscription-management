@@ -8,8 +8,6 @@ router.get('/', function(req, res) {
   res.send('respond with a resource');
 });
 
- 
-
 //Edit
 router.get('/edit', function(req, res) {
   
@@ -40,13 +38,11 @@ router.get('/edit', function(req, res) {
 
 //delete
 router.get('/delete/:id', (req, res) => {
-  console.log(req.params.id)
+   console.log(req.params.id)
    manageUsers.deleteUser(req.params.id)
     
    res.redirect('/menu/manageUsers');
 });
-
-
 
 //create
 router.post('/create', async (req, res) =>
