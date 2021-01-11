@@ -1,5 +1,6 @@
 const usersDAL = require('../DAL/usersDAL')
 const PermissionsDAL = require('../DAL/permissionsDAL')
+const Users = require('../model/UserModel')
 exports.getUsers = async () => {
 
     let data = await usersDAL.getAllUsers()
@@ -43,7 +44,23 @@ exports.deleteUser= async (id) => {
 
  data = await exports.getPermissions()
  newData =  data.filter( x => x.id != id )
+
  PermissionsDAL.setPermissions(newData)
+  exports.deleteUserDB(id)
 
+}
 
+exports.deleteUserDB = (id) => {
+      
+    Users.findByIdAndDelete(id,function(err)
+    {
+        if(err)
+        {
+           console.log(err)
+        }
+        else
+        {
+            console.log("Object Deleted !")
+        }
+    }) 
 }
