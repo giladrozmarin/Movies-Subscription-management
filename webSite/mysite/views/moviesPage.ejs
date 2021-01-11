@@ -62,7 +62,7 @@
                         </div>
                         <% var obj = JSON.stringify(v) %>
                               <dd style="margin-top: 15px;"><a href="http://localhost:3000/movies/edit/?obj=<%= obj%>"><button>Edit</button></a>
-                                <a href="http://localhost:3000/movies/delete/<%= v._id %>"><button>Delete</button></a></dd>
+                                <a href="http://localhost:3000/movies/delete/<%= v._id %>?obj=<%= obj%>"><button>Delete</button></a></dd>
                             </br>
                             
                            <% }%>
