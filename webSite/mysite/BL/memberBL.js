@@ -7,8 +7,9 @@ exports.getMember = async (id) => {
     return data.data
    
 }
-exports.addMember = (obj) => {
-    membersDAL.addMember(obj)
+exports.addMember = async (obj) => {
+    let data = await membersDAL.addMember(obj)
+    return data.data
 }
 exports.updateMember =  (obj) => {
 
