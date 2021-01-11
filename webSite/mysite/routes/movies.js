@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const moviesBL = require('../BL/moviesBL')
+const subscriptionsBL = require ('../BL/subscriptionsBL')
 //Movies list
 router.get('/', async (req, res, next) => {
 
@@ -44,9 +45,13 @@ router.get('/find/:id', async (req, res) => {
  });
 //Delete
   router.get('/delete/:id' , async (req,res) =>{
-
-  
+    let data = JSON.parse(req.query.obj);
+ 
    await moviesBL.delete(req.params.id)
+   data.subscribe.forEach(element => {
+    subscriptionsBL.deleteMovie(req.params.id,element.id_subs)
+   });
+
    res.redirect('/movies')
 } ) 
 //Create
