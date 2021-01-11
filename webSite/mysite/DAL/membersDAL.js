@@ -6,7 +6,7 @@ exports.getMembersById = (id) => {
 }
 
 exports.addMember = (obj) => {
-    axios.post(`http://localhost:3001/members`,{
+   return axios.post(`http://localhost:3001/members`,{
         Name: obj.Name,
         Email : obj.Email,
         City : obj.City
@@ -18,12 +18,10 @@ exports.addMember = (obj) => {
 exports.updateMember = (obj) => {
     console.log(obj.id)
 
-    axios.put(`http://localhost:3001/members/${obj.id}`,{
+    return axios.put(`http://localhost:3001/members/${obj.id}`,{
         Name: obj.Name,
         Email : obj.Email,
         City : obj.City
-      }).then(function (response) {
-        console.log(response.data);
       })
 }
 
