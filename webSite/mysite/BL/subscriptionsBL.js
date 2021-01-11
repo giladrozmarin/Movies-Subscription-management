@@ -44,14 +44,28 @@ exports.getMovies = async (movies) => {
   
   }
   
-exports.addMovie = async (data,id) => {
+
+  exports.addMovie = async (data,id) => {
 
     subscriptionsDAL.updateSubscriptions(data,id)
   }
 
+exports.createSubscribe = async (id) => {
+    subscriptionsDAL.addSubscriptions(id)
+}
 
 
- 
+
+ exports.deleteMovie = async (id_movie,id_subs) => {
+   console.log(id_movie)
+   console.log(id_subs)
+      let data = await subscriptionsDAL.getSubscriptionsById(id_subs)
+  
+      let new_data = data.data.Movies.filter(x => x.movieId !== id_movie)
+
+      data.data.Movies=new_data;
+      subscriptionsDAL.updateSubscriptionsMoviesDelete(data.data)
+ }
  exports.delete =  (id) => {
   subscriptionsDAL.deleteSubscriptionsById(id)
 }
