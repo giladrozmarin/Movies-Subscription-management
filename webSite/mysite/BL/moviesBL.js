@@ -27,7 +27,8 @@ exports.getMovies = async () => {
                     let obj = { 
                          Name : getMembersName.data.Name,
                          date: data[0].date,
-                         id: subs.MemberId
+                         id: subs.MemberId,
+                         id_subs: subs._id
                     }
                        x.subscribe.push(obj)
                }
@@ -39,6 +40,8 @@ exports.delete =  (id) => {
 
     
      moviesDAL.deleteMoviesById(id)
+    
+
 }
 exports.addMovie =  (obj) => {
 
