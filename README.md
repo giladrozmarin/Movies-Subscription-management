@@ -4,7 +4,7 @@ A web site for movies subscription management
   </p>
 
 <h3 align="center">
- Web applicationr architecture
+ Web application architecture
   </h3>
 
 
